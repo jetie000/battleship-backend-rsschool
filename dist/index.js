@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.wss = void 0;
+const http_server_1 = require("./http_server");
+const ws_1 = require("ws");
+const HTTP_PORT = 8181;
+const WS_PORT = 3000;
+console.log(`Start static http server on the ${HTTP_PORT} port!`);
+http_server_1.httpServer.listen(HTTP_PORT);
+console.log(`Start WebSocket server on the ${WS_PORT} port!`);
+exports.wss = new ws_1.WebSocketServer({ port: WS_PORT });
