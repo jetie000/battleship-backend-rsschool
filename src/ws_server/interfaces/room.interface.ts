@@ -6,18 +6,13 @@ interface Shot extends Point {
   status: ShotStatus;
 }
 
-interface PlayerWS {
-  id: number;
-  ws: WebSocket;
-}
-
 export interface Room {
   id: number;
-  player1Id: PlayerWS;
-  player2Id: PlayerWS;
+  player1Id: number;
+  player2Id: number | undefined;
   shipsPlayer1: Point[][];
   shipsPlayer2: Point[][];
   shotsPlayer1: Shot[];
   shotsPlayer2: Shot[];
-  turn: 1 | 2;
+  turn: 0 | 1 | 2;
 }

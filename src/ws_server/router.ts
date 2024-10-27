@@ -1,6 +1,7 @@
 import { WebSocket } from 'ws';
 import { handleUserReg } from './handlers/userHandlers';
 import { RequestTypes } from './helpers/requestTypes';
+import { handleAddUserToRoom, handleCreateRoom } from './handlers/roomHandlers';
 
 export const handleWsMessage = (type: string, data: any, ws: WebSocket) => {
   switch (type) {
@@ -8,8 +9,10 @@ export const handleWsMessage = (type: string, data: any, ws: WebSocket) => {
       handleUserReg(data, ws);
       break;
     case RequestTypes.CREATE_ROOM:
+      handleCreateRoom(ws);
       break;
     case RequestTypes.ADD_USER_TO_ROOM:
+      handleAddUserToRoom(data, ws);
       break;
     case RequestTypes.ADD_SHIPS:
       break;
