@@ -1,5 +1,4 @@
 import { wss } from '..';
-import { players } from './db';
 import { handleWsMessage } from './router';
 
 export const startWSServer = (PORT: number) => {
@@ -12,10 +11,6 @@ export const startWSServer = (PORT: number) => {
       });
 
       ws.on('close', () => {
-        const playerIndex = players.findIndex((player) => player.ws === ws);
-        if (playerIndex !== -1) {
-          players.splice(playerIndex, 1);
-        }
         ws.close();
       });
     })

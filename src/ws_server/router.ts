@@ -2,6 +2,7 @@ import { WebSocket } from 'ws';
 import { handleUserReg } from './handlers/userHandlers';
 import { RequestTypes } from './helpers/requestTypes';
 import { handleAddUserToRoom, handleCreateRoom } from './handlers/roomHandlers';
+import { handleAddShips } from './handlers/shipHandlers';
 
 export const handleWsMessage = (type: string, data: any, ws: WebSocket) => {
   switch (type) {
@@ -15,8 +16,7 @@ export const handleWsMessage = (type: string, data: any, ws: WebSocket) => {
       handleAddUserToRoom(data, ws);
       break;
     case RequestTypes.ADD_SHIPS:
-      break;
-    case RequestTypes.START_GAME:
+      handleAddShips(data, ws);
       break;
     case RequestTypes.ATTACK:
       break;

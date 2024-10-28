@@ -2,8 +2,8 @@ import { WebSocket } from 'ws';
 import { players } from '../db';
 import { sendResponse } from '../helpers/sendResponse';
 import { updateRoom } from './roomHandlers';
-import { ResponseTypes } from 'ws_server/helpers/responseTypes';
-import { RequestTypes } from 'ws_server/helpers/requestTypes';
+import { ResponseTypes } from '../helpers/responseTypes';
+import { RequestTypes } from '../helpers/requestTypes';
 
 export const handleUserReg = (data: any, ws: WebSocket) => {
   const { name, password } = JSON.parse(data);
