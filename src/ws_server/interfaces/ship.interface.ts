@@ -1,6 +1,7 @@
+import { Point } from './point.interface';
+
 export interface Ship {
-  x: number;
-  y: number;
+  position: Point;
   direction: boolean;
   length: number;
   type: 'small' | 'medium' | 'large' | 'huge';

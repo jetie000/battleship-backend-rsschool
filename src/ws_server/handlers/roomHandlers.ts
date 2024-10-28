@@ -46,7 +46,7 @@ export const createGame = (gameId: number) => {
   });
 };
 
-export const turn = (roomId: number) => {
+export const turn = (roomId: number, isSamePlayer: boolean = false) => {
   const room = rooms.find((room) => room.id === roomId);
   const player1 = players.find((player) => player.index === room?.player1Id);
   const player2 = players.find((player) => player.index === room?.player2Id);
@@ -56,10 +56,12 @@ export const turn = (roomId: number) => {
   if (!room) {
     return;
   }
-  if (room.turn === `${room.player1Id}-${roomId}`) {
-    room.turn = `${room.player2Id}-${roomId}`;
-  } else {
-    room.turn = `${room.player1Id}-${roomId}`;
+  if (!isSamePlayer) {
+    if (room.turn === `${room.player1Id}-${roomId}`) {
+      room.turn = `${room.player2Id}-${roomId}`;
+    } else {
+      room.turn = `${room.player1Id}-${roomId}`;
+    }
   }
   sendResponse(player1.ws, ResponseTypes.TURN, {
     currentPlayer: room.turn,
@@ -95,6 +97,9 @@ export const handleAddUserToRoom = (data: any, ws: WebSocket) => {
   const room = rooms.find((room) => room.id === indexRoom);
   const player = players.find((player) => player.ws === ws);
   if (!room || !player) {
+    return;
+  }
+  if (room.player1Id === player.index) {
     return;
   }
   room.player2Id = player.index;

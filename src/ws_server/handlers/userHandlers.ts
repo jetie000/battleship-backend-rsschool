@@ -24,6 +24,7 @@ export const handleUserReg = (data: any, ws: WebSocket) => {
     return;
   }
   if (player.password === password) {
+    player.ws = ws;
     sendResponse(ws, ResponseTypes.REG, {
       name,
       index: player.index,

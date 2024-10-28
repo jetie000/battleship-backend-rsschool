@@ -39,8 +39,8 @@ export const handleAddShips = (data: any, ws: WebSocket) => {
     sendResponse(secondPlayer.ws, ResponseTypes.START_GAME, {
       ships:
         secondPlayerIndex === room.player1Id
-          ? room.shipsPlayer1
-          : room.shipsPlayer2,
+          ? room.shipsPlayer1.ships
+          : room.shipsPlayer2.ships,
       currentPlayerIndex: secondPlayerIndex,
     });
     turn(gameId);
